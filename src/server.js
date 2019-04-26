@@ -3,7 +3,7 @@ const nunjucks = require('nunjucks')
 const path = require('path')
 
 class App {
-  constructor() {
+  constructor () {
     this.express = express()
     this.isDev = process.env.NODE_ENV // Verify homolog/production
 
@@ -12,7 +12,7 @@ class App {
     this.routes()
   }
 
-  middlewares() {
+  middlewares () {
     this.express.use(
       express.urlencoded({
         extended: false
@@ -20,18 +20,17 @@ class App {
     )
   }
 
-  views() {
+  views () {
     nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       watch: this.isDev,
       express: this.express,
       autoescape: true
     })
 
-    this.express.use(express.static(path.resolve(__dirname, 'public')))
     this.express.set('view engine', 'njk')
   }
 
-  routes() {
+  routes () {
     this.express.use(require('./routes'))
   }
 }
