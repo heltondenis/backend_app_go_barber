@@ -1,10 +1,10 @@
 {
-  "name": "backend_app_go_barber",
+  "name": "modulo2",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js -e js"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
@@ -23,6 +23,7 @@
     "express-session": "^1.15.6",
     "moment": "^2.22.2",
     "multer": "^1.4.1",
+    "mysql2": "^1.6.5",
     "nunjucks": "^3.1.4",
     "nunjucks-date-filter": "^0.1.1",
     "pg": "^7.6.1",
