@@ -1,9 +1,11 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
+const session = require('express-session')
 const path = require('path')
+const LokiStore = require('connect-loki')(session)
 
 class App {
-  constructor() {
+  constructor () {
     this.express = express()
     this.isDev = process.env.NODE_ENV // Verify homolog/production
 
@@ -12,15 +14,26 @@ class App {
     this.routes()
   }
 
-  middlewares() {
+  middlewares () {
     this.express.use(
       express.urlencoded({
         extended: false
       })
     )
+
+    this.express.use(
+      session({
+        store: new LokiStore({
+          path: path.resolve(__dirname, '..', 'tmp', 'sessions.db')
+        }),
+        secret: 'MyAppSecret',
+        resave: false,
+        saveUninitialized: true
+      })
+    )
   }
 
-  views() {
+  views () {
     nunjucks.configure(path.resolve(__dirname, 'app', 'views'), {
       watch: this.isDev,
       express: this.express,
@@ -31,7 +44,7 @@ class App {
     this.express.set('view engine', 'njk')
   }
 
-  routes() {
+  routes () {
     this.express.use(require('./routes'))
   }
 }
