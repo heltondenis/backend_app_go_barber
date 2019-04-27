@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       avatar: DataTypes.STRING,
-      password: DataTypes.VIRTUAL,
+      password: DataTypes.VIRTUAL, // Field that only exists in the application and not in the database
       password_hash: DataTypes.STRING,
       provider: DataTypes.BOOLEAN
     },
