@@ -13,7 +13,6 @@ class FileController {
       'uploads',
       file
     )
-
     return res.sendFile(filePath)
   }
 }
