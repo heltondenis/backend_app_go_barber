@@ -14,6 +14,7 @@ const SessionController = require('./app/controllers/SessionController')
 const DashboardController = require('./app/controllers/DashboardController')
 const FileController = require('./app/controllers/FileController')
 const AppointmentController = require('./app/controllers/AppointmentController')
+const AvailableController = require('./app/controllers/AvailableController')
 
 routes.use((req, res, next) => {
   res.locals.flashSucess = req.flash('success')
@@ -35,6 +36,7 @@ routes.get('/app/dashboard', DashboardController.index)
 
 // Appointment
 routes.get('/app/appointments/new/:provider', AppointmentController.create)
+routes.get('/app/available/:provider', AvailableController.index)
 
 // Files
 routes.get('/files/:file', FileController.show)
